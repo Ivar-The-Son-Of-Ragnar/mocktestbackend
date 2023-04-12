@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const connectDB = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require("./routes/adminRoutes");
 const teacherRoutes = require('./routes/teacherRoutes');
 const examRoutes = require('./routes/examRoutes');
 const paymentRoutes = require("./routes/paymentRoutes")
@@ -29,6 +30,8 @@ app.use('/api/exams', authenticate, authorize('student'),examRoutes);//
 
 // Use authentication and authorization middleware for all payment routes
 app.use('/api/payments', authenticate, authorize('teacher','student'),paymentRoutes);// 
+
+app.use("/api/admin",authenticate, authorize("admin"),adminR)
 
 
 const port = process.env.PORT || 5000;
