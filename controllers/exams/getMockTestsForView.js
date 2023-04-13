@@ -26,7 +26,7 @@ async function getMockTestsByExamSubjectAndChapter(req, res) {
     if (!user) return res.status(404).send("User not found");
 
     // Populate the user's purchases field with the MockTest model
-    const populatedUser = await user.populate({ path: 'purchases', model: 'MockTest' });
+    const populatedUser = await user.populate({ path: 'purchases.mockTest' });
 
     // Find mock tests associated with the chapter and populate the necessary fields
     let mockTests = await MockTest.find({ chapter: chapter._id })
@@ -35,7 +35,7 @@ async function getMockTestsByExamSubjectAndChapter(req, res) {
 
     // Add a 'bought' field to each mock test, indicating whether the user has bought it or not
     mockTests = mockTests.map((mockTest) => {
-      const bought = populatedUser.purchases.some((purchase) => purchase._id.equals(mockTest._id));
+      const bought = populatedUser.purchases.some((purchase) => purchase.mockTest._id.equals(mockTest._id));
       return { ...mockTest.toObject(), bought: bought };
     });
 

@@ -31,7 +31,7 @@ app.use('/api/exams', authenticate, authorize('student'),examRoutes);//
 // Use authentication and authorization middleware for all payment routes
 app.use('/api/payments', authenticate, authorize('teacher','student'),paymentRoutes);// 
 
-app.use("/api/admin",authenticate, authorize("admin"),adminR)
+app.use("/api/admin",adminRoutes)//authenticate, authorize("admin") ,
 
 
 const port = process.env.PORT || 5000;
