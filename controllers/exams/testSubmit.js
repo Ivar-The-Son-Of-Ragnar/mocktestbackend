@@ -1,6 +1,5 @@
 const MockTest = require("../../models/MockTest");
 const User = require("../../models/User");
-
 async function testSubmit(req, res) {
   try {
     const { email, mockTestId, correctAnswers } = req.body;
@@ -19,7 +18,7 @@ async function testSubmit(req, res) {
     // Calculate the score
     let score = 0;
     mockTest.questions.forEach((question, index) => {
-      if (question.correctAnswer === correctAnswers[index]) {
+      if (question.correctAnswer === question.options[correctAnswers[index]]) {
         score++;
       }
     });
