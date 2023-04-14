@@ -54,7 +54,7 @@ async function mockTestCreate(req, res) {
 
     // Create a new mock test
     const mockTest = new MockTest({
-      name: req.body.topic,
+      name: req.body.name,
       author: user._id,
       price: req.body.price,
       chapter: chapter._id,

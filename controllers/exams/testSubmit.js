@@ -18,7 +18,7 @@ async function testSubmit(req, res) {
     // Calculate the score
     let score = 0;
     mockTest.questions.forEach((question, index) => {
-      if (question.correctAnswer === question.options[correctAnswers[index]]) {
+      if (question.options[question.correctAnswer] === question.options[correctAnswers[index]]) {
         score++;
       }
     });
