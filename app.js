@@ -9,6 +9,8 @@ const examRoutes = require('./routes/examRoutes');
 const paymentRoutes = require("./routes/paymentRoutes")
 const {authorize,authenticate} = require("./middlewares/authMiddleware")
 const app = express();
+app.use(cors());
+
 
 // Connect to the database
 connectDB();
@@ -17,7 +19,6 @@ app.use(morgan("combined"));
 app.use(express.json());
 
 // Enable CORS for all routes
-app.use(cors());
 
 
 app.use('/api/auth', authRoutes);
